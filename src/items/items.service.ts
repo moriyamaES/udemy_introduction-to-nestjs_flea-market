@@ -18,4 +18,14 @@ export class ItemsService {
     this.items.push(item);
     return item;
   }
+  updateStatus(id: string): Item {
+    const item = this.findById(id);
+    item.status = 'SOLD_OUT';
+    return item;
+  }
+  delete(id: string): Item {
+    const item = this.findById(id);
+    this.items = this.items.filter((item) => item.id !== id);
+    return item;
+  }
 }
