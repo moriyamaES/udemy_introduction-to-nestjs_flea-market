@@ -124,6 +124,17 @@ exports.Prisma.ItemScalarFieldEnum = {
   description: 'description',
   status: 'status',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  status: 'status',
+  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
@@ -146,8 +157,14 @@ exports.ItemStatus = exports.$Enums.ItemStatus = {
   SOLD_OUT: 'SOLD_OUT'
 };
 
+exports.UserStatus = exports.$Enums.UserStatus = {
+  FREE: 'FREE',
+  PREMIUM: 'PREMIUM'
+};
+
 exports.Prisma.ModelName = {
-  Item: 'Item'
+  Item: 'Item',
+  User: 'User'
 };
 
 /**
