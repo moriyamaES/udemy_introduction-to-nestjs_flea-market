@@ -20,10 +20,10 @@ export class ItemsController {
   async create(@Body() createItemDto: CreateItemDto): Promise<Item> {
     return await this.itemsService.create(createItemDto);
   }
-  // @Put(':id')
-  // updateStatus(@Param('id', ParseUUIDPipe) id: string): Item {
-  //   return this.itemsService.updateStatus(id);
-  // }
+  @Put(':id')
+  async updateStatus(@Param('id', ParseUUIDPipe) id: string): Promise<Item> {
+    return await this.itemsService.updateStatus(id);
+  }
   @Delete(':id')
   deleteItem(@Param('id', ParseUUIDPipe) id: string): void {
     this.itemsService.delete(id);
