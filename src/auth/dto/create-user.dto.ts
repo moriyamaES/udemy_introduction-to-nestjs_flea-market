@@ -3,15 +3,13 @@ import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { MinLength } from 'class-validator';
 import { IsStrongPassword } from 'class-validator';
 
-// import { IsEmail, IsEnum, IsNotEmpty, IsString, MinLength, IsStrongPassword } from 'class-validator';
-
 export class CreateUserDto {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   @IsString()
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   @IsNotEmpty()
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  @MinLength(20)
+  @MinLength(8)
   name: string;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   @IsEmail()
