@@ -1,12 +1,12 @@
 import { UserStatus } from 'generated/prisma';
 import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { MinLength } from 'class-validator';
+import { MaxLength } from 'class-validator';
 import { IsStrongPassword } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
-  @MinLength(8)
+  @MaxLength(20)
   name: string;
 
   @IsEmail()
