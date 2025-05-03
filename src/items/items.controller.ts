@@ -1,9 +1,14 @@
 import { Body, Controller, Get, Post, Param, Put } from '@nestjs/common';
 import { Delete } from '@nestjs/common/decorators';
+import { Request } from '@nestjs/common/decorators';
 import { ItemsService } from './items.service';
 import { Item } from 'generated/prisma';
 import { CreateItemDto } from './dto/create-items.dto';
 import { ParseUUIDPipe } from '@nestjs/common/pipes/parse-uuid.pipe';
+import { UseGuards } from '@nestjs/common/decorators';
+import { AuthGuard } from '@nestjs/passport';
+import { Request as ExpressRequest } from 'express';
+import { RequestUser } from '../types/requestUser';
 
 @Controller('items')
 export class ItemsController {
@@ -17,8 +22,12 @@ export class ItemsController {
     return await this.itemsService.findById(id);
   }
   @Post()
-  async create(@Body() createItemDto: CreateItemDto): Promise<Item> {
-    return await this.itemsService.create(createItemDto);
+  @UseGuards(AuthGuard('jwt'))
+  async create(
+    @Body() createItemDto: CreateItemDto,
+    @Request() req: ExpressRequest & { user: RequestUser },
+  ): Promise<Item> {
+    return await this.itemsService.create(createItemDto, req.user.id);
   }
   @Put(':id')
   async updateStatus(@Param('id', ParseUUIDPipe) id: string): Promise<Item> {
