@@ -13,14 +13,17 @@ import { RequestUser } from '../types/requestUser';
 @Controller('items')
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
+
   @Get()
   async findAll(): Promise<Item[]> {
     return await this.itemsService.findAll();
   }
+
   @Get(':id')
   async findById(@Param('id', ParseUUIDPipe) id: string): Promise<Item> {
     return await this.itemsService.findById(id);
   }
+
   @Post()
   @UseGuards(AuthGuard('jwt'))
   async create(
@@ -29,11 +32,15 @@ export class ItemsController {
   ): Promise<Item> {
     return await this.itemsService.create(createItemDto, req.user.id);
   }
+
   @Put(':id')
+  @UseGuards(AuthGuard('jwt'))
   async updateStatus(@Param('id', ParseUUIDPipe) id: string): Promise<Item> {
     return await this.itemsService.updateStatus(id);
   }
+
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'))
   async deleteItem(@Param('id', ParseUUIDPipe) id: string) {
     await this.itemsService.delete(id);
   }
