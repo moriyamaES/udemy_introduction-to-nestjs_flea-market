@@ -3,7 +3,7 @@ import { Delete } from '@nestjs/common/decorators';
 import { Request } from '@nestjs/common/decorators';
 import { ItemsService } from './items.service';
 import { Item } from 'generated/prisma';
-import { CreateItemDto } from './dto/create-items.dto';
+import { CreateItemDto } from './dto/create-item.dto';
 import { ParseUUIDPipe } from '@nestjs/common/pipes/parse-uuid.pipe';
 import { UseGuards } from '@nestjs/common/decorators';
 import { AuthGuard } from '@nestjs/passport';
